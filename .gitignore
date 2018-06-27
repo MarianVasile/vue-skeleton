@@ -2,6 +2,7 @@
 node_modules/
 dist/
 .idea
+yarn.lock
 stats.json
 */.idea
 .eslintcache
