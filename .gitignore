@@ -5,6 +5,8 @@ dist/
 yarn.lock
 stats.json
 */.idea
+.vscode
+*/.vscode
 .eslintcache
 .stylelintcache
 /*error.txt

@@ -2,20 +2,27 @@ const config = require('./build-tools/config');
 
 const defaultSettings = ['prettier --write', 'git add'];
 
+const jsLintCommand = 'eslint --ext .js,.vue --cache';
+const tsLintCommand = 'tslint -p tsconfig.json';
+const scssLintCommand = 'stylelint --cache';
+
 const jsSettings = config.lintStaged.eslintEnabled
-  ? [...defaultSettings, 'npm run lint:js']
+  ? [...defaultSettings, jsLintCommand]
   : [...defaultSettings];
 
+const vueSettings = config.lintStaged.eslintEnabled ? [jsLintCommand] : [];
+
 const tsSettings = config.lintStaged.tslintEnabled
-  ? [...defaultSettings, 'npm run lint:ts']
+  ? [...defaultSettings, tsLintCommand]
   : [...defaultSettings];
 
 const scssSettings = config.lintStaged.stylelintEnabled
-  ? [...defaultSettings, 'npm run lint:scss']
+  ? [...defaultSettings, scssLintCommand]
   : [...defaultSettings];
 
 module.exports = {
   'src/**/*.js': jsSettings,
+  'src/**/*.vue': vueSettings,
   'src/**/*.ts': tsSettings,
   'src/**/*.scss': scssSettings,
 };
